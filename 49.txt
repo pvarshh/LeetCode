@@ -1,0 +1,78 @@
+GROUP ANAGRAMS (NC)
+--------------
+
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+
+Example 1:
+-> Input: strs = ["eat","tea","tan","ate","nat","bat"]
+-> Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+-> Explanation:
+	-> There is no string in strs that can be rearranged to form "bat".
+	-> The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
+	-> The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
+
+Example 2:
+-> Input: strs = [""]
+-> Output: [[""]]
+
+Example 3:
+-> Input: strs = ["a"]
+-> Output: [["a"]]
+ 
+Constraints:
+-> 1 <= strs.length <= 104
+-> 0 <= strs[i].length <= 100
+-> strs[i] consists of lowercase English letters.
+
+
+using namespace std;
+
+class Solution {
+public:
+	vector<vector<solution>> group_anagrams (vector<string> strs) {
+		unordered_map<string, vector<string>> anagram_map;
+		for (string& str : strs) {
+			string val = str;
+			sort(str.begin(), str.end());
+			anagram_map[str].push_back(val);
+		}
+		vector<vector<string>> anagrams;
+		for (auto& [key, anagram] : anagram_map) {
+			anagrams.push_back(anagram);
+		}
+		return anagrams;
+	}
+};
+
+
+
+
+
+INCORRECT CODE ... MAP CANNOT HAVE A VECTOR AS KEY
+--------------------------------------------------
+
+class Solution {
+public:
+	vector<vector<string>> group_anagrams (vector<string> strs) {
+		unordered_map<vector<int>, vector<string>> anagram_map;
+		for (int i = 0; i < strs.size(); ++i) {
+			vector<int> s_map = make_map(strs[i]);
+			anagram_map[s_map].push_back(strs[i]);
+		}
+		vector<vector<string>> anagrams;
+		for (auto [map, s_anagrams] : anagram_map) {
+			anagrams.push_back(s_anagrams);
+		}
+		return anagrams;
+			
+	}
+
+	vector<int> make_map (string s) {
+		vector<int> s_map (26, 0);
+		for (auto c : s) {
+			++s_map[c - 'a'];
+		}
+		return s_map;
+	}
+};
