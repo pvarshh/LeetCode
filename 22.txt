@@ -1,0 +1,48 @@
+GENERATE PARENTHESES (NC)
+-------------------- medium
+
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+
+Example 1:
+-> Input: n = 3
+-> Output: ["((()))","(()())","(())()","()(())","()()()"]
+
+Example 2:
+-> Input: n = 1
+-> Output: ["()"]
+ 
+Constraints:
+-> 1 <= n <= 8
+
+
+TIME  COMPLEXITY: idek
+SPACE COMPLEXITY: idek 
+
+class Solution {
+public:
+	void backtrack(int n, int openN, int closeN, vector<string>& res, string& stack) {
+		if (openN == n and closeN == n) {
+			res.push_back(stack);
+		}
+
+		if (openN < n) {
+			stack += '(';
+			backtrack(n, openN + 1, closeN, res, stack);
+			stack.pop_back();
+		}
+
+		if (closeN < openN) {
+			stack += ')';
+			backtrack(m openN, closeN + 1, res, stack);
+			stack.pop_back();
+		}
+	}
+	
+	vector<int> generate_parentheses (int n) {
+		vector<string> res;
+		string stack = "";
+		backtrack(n, 0, 0, res, stack);
+		return res;
+	}
+};
