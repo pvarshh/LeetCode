@@ -16,7 +16,7 @@ def update_README():
     checkbox = "[X]" if solved else "[ ]"
 
     # Format the new problem entry
-    new_entry = f"{checkbox} [{problem_number}. {problem_name}]({solution_link})"
+    new_entry = f"- {checkbox} [{problem_number}. {problem_name}]({solution_link})"
 
     # Read the current README.md content
     with open("README.md", "r") as file:
@@ -42,12 +42,12 @@ def update_README():
             problem_exists = True
             # Update the checkbox if the problem is being marked as solved
             if solved:
-                content[i] = re.sub(r"\[ \]", "[x]", content[i])
+                content[i] = re.sub(r"\[ \]", "[X]", content[i])
             break
 
     # If the problem doesn't exist, add it to the section
     if not problem_exists:
-        content.insert(section_end - 1, f"- {new_entry}\n")
+        content.insert(section_end - 1, f"{new_entry}\n")
 
     # Sort the problems in the section by problem number
     section_content = content[section_start + 1:section_end]
@@ -59,18 +59,18 @@ def update_README():
 
     # Count the number of solved problems in the section
     solved_count = 0
-    README_count = 0
+    total_count = 0
     for line in content[section_start + 1:section_end]:
-        if re.search(r"\[x\]", line):
+        if re.search(r"\[X\]", line, re.IGNORECASE):
             solved_count += 1
         if re.search(r"\[\d+\.", line):
-            README_count += 1
+            total_count += 1
 
     # Update the section header with the solved count
     header = content[section_start]
-    header_updated = re.sub(r"\(\d+/\d+\)", f"({solved_count}/{README_count})", header)
+    header_updated = re.sub(r"\(\d+/\d+\)", f"({solved_count}/{total_count})", header)
     if header_updated == header:  # If no count was present, add it
-        header_updated = header.strip() + f" ({solved_count}/{README_count})\n"
+        header_updated = header.strip() + f" ({solved_count}/{total_count})\n"
     content[section_start] = header_updated
 
     # Write the updated content back to README.md
@@ -78,7 +78,7 @@ def update_README():
         file.writelines(content)
 
     print(f"README.md updated successfully for problem {problem_number}. {problem_name}!")
-    print(f"Solved {solved_count}/{README_count} problems in the {difficulty} section.")
+    print(f"Solved {solved_count}/{total_count} problems in the {difficulty} section.")
 
 
 # Run the function interactively
