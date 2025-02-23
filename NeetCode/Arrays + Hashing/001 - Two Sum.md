@@ -39,13 +39,19 @@ You can return the answer in any order.
 use a map to store num and its idx. loop across nums, checking if complement (target - num) exists in map. if exists, return complement's idx and curr idx; else continue
 
 ## Complexity 
-**Time:** O() -> 
+**Time:** O(n) -> linear search across nums
 
-**Space:** O() -> 
-
+**Space:** O(n) -> store idx, num in map
 
 
 ## Solution
 ```python
 class Solution:
-    
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for idx, num in enumerate(nums):
+            complement = target - num
+            if complement in seen:
+                return [idx, seen[complement]]
+            seen[num] = idx
+        return []
