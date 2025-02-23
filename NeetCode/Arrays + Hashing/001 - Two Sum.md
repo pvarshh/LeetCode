@@ -43,7 +43,6 @@ use a map to store num and its idx. loop across nums, checking if complement (ta
 
 **Space:** O(n) -> store idx, num in map
 
-
 ## Solution
 ```python
 class Solution:

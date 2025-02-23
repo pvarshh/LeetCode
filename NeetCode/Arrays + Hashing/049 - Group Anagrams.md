@@ -39,12 +39,12 @@ Given an array of strings `strs`, group the
 
 
 ## Intuition
+map the frequency of the string to the actual string. if frequency exists in map, append string; else, create new k/v
 
 ## Complexity 
 **Time:** O(n * k) -> linear search across the strings, linear search across each string in strings to populate the map
 
 **Space:** O(n) -> store every map (O(26)) as the key, and strings as the values
-
 
 
 ## Solution
