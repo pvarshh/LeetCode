@@ -1,8 +1,8 @@
 import re
 
-def update_total():
+def update_README():
     """
-    Updates the total.md file interactively based on user input.
+    Updates the README.md file interactively based on user input.
     Tracks the number of solved problems in each section and updates the header.
     """
     # Ask for user input
@@ -18,8 +18,8 @@ def update_total():
     # Format the new problem entry
     new_entry = f"{checkbox} [{problem_number}. {problem_name}]({solution_link})"
 
-    # Read the current total.md content
-    with open("total.md", "r") as file:
+    # Read the current README.md content
+    with open("README.md", "r") as file:
         content = file.readlines()
 
     # Find the section for the given difficulty
@@ -33,7 +33,7 @@ def update_total():
             break
 
     if section_start is None or section_end is None:
-        raise ValueError(f"Could not find the '{difficulty}' section in total.md.")
+        raise ValueError(f"Could not find the '{difficulty}' section in README.md.")
 
     # Check if the problem already exists in the section
     problem_exists = False
@@ -59,28 +59,28 @@ def update_total():
 
     # Count the number of solved problems in the section
     solved_count = 0
-    total_count = 0
+    README_count = 0
     for line in content[section_start + 1:section_end]:
         if re.search(r"\[x\]", line):
             solved_count += 1
         if re.search(r"\[\d+\.", line):
-            total_count += 1
+            README_count += 1
 
     # Update the section header with the solved count
     header = content[section_start]
-    header_updated = re.sub(r"\(\d+/\d+\)", f"({solved_count}/{total_count})", header)
+    header_updated = re.sub(r"\(\d+/\d+\)", f"({solved_count}/{README_count})", header)
     if header_updated == header:  # If no count was present, add it
-        header_updated = header.strip() + f" ({solved_count}/{total_count})\n"
+        header_updated = header.strip() + f" ({solved_count}/{README_count})\n"
     content[section_start] = header_updated
 
-    # Write the updated content back to total.md
-    with open("total.md", "w") as file:
+    # Write the updated content back to README.md
+    with open("README.md", "w") as file:
         file.writelines(content)
 
-    print(f"total.md updated successfully for problem {problem_number}. {problem_name}!")
-    print(f"Solved {solved_count}/{total_count} problems in the {difficulty} section.")
+    print(f"README.md updated successfully for problem {problem_number}. {problem_name}!")
+    print(f"Solved {solved_count}/{README_count} problems in the {difficulty} section.")
 
 
 # Run the function interactively
 if __name__ == "__main__":
-    update_total()
+    update_README()
