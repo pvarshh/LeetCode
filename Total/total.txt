@@ -1,18 +1,0 @@
-EASIES:  3
-MEDIUMS: 0
-HARDS:   0
-
-
-EASIES
-------
-028 - Find Index of First Occurrence in String (two pointers, string, string matching)217 - Contains Duplicates (array, hash table, sorting)
-605 - Can Place Flowers (array, greedy)
-
-
-MEDIUMS
--------
-
-
-
-HARDS
------
