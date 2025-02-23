@@ -5,7 +5,7 @@ https://leetcode.com/u/parney04/
 
 ## Problems Solved
 
-### Easy - 3 (0/0)
+### Easy - (0/0)
 
 
 ### Medium - (0/0)
