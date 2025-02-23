@@ -4,6 +4,7 @@ def update_README():
     """
     Updates the README.md file interactively based on user input.
     Tracks the number of solved problems in each section and updates the header.
+    Adds a "Total Solved" section below the main header and profile link.
     """
     # Ask for user input
     difficulty = input("Enter the difficulty level (Easy, Medium, Hard): ").strip().capitalize()
@@ -73,12 +74,47 @@ def update_README():
         header_updated = header.strip() + f" ({solved_count}/{total_count})\n"
     content[section_start] = header_updated
 
+    # Calculate total solved across all sections
+    total_solved = 0
+    total_problems = 0
+    for i, line in enumerate(content):
+        if line.startswith("### "):
+            # Extract solved and total counts from the section header
+            match = re.search(r"\((\d+)/(\d+)\)", line)
+            if match:
+                total_solved += int(match.group(1))
+                total_problems += int(match.group(2))
+
+    # Update or add the "Total Solved" section below the main header and profile link
+    total_solved_header = "## Total Solved\n"
+    total_solved_content = f"**Total Solved:** {total_solved}/{total_problems}\n\n"
+    total_solved_index = None
+
+    # Find the index of the main header and profile link
+    main_header_index = None
+    for i, line in enumerate(content):
+        if line.startswith("# LeetCode Solutions"):
+            main_header_index = i
+            break
+
+    if main_header_index is not None:
+        # Insert the "Total Solved" section after the main header and profile link
+        total_solved_index = main_header_index + 2
+        if not content[total_solved_index].startswith("## Total Solved"):
+            content.insert(total_solved_index, total_solved_content)
+            content.insert(total_solved_index, total_solved_header)
+        else:
+            # Update the existing "Total Solved" section
+            content[total_solved_index] = total_solved_header
+            content[total_solved_index + 1] = total_solved_content
+
     # Write the updated content back to README.md
     with open("README.md", "w") as file:
         file.writelines(content)
 
     print(f"README.md updated successfully for problem {problem_number}. {problem_name}!")
     print(f"Solved {solved_count}/{total_count} problems in the {difficulty} section.")
+    print(f"Total Solved: {total_solved}/{total_problems}")
 
 
 # Run the function interactively

@@ -1,6 +1,9 @@
 # LeetCode Solutions
 https://leetcode.com/u/parney04/
 
+## Total Solved
+**Total Solved:** 1/1
+
 ---
 
 ## Problems Solved
@@ -11,6 +14,5 @@ https://leetcode.com/u/parney04/
 ### Medium - (0/0)
 
 ### Hard - (0/0)
-
 
 ---
