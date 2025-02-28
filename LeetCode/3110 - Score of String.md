@@ -41,8 +41,6 @@ simply loop across the string computing the absolute difference of the curr and 
 
 **Space:** O(1) -> constant `score` variable to store the running score based on the computation given in the spec
 
-
-
 ## Solution
 ```python
 class Solution:
