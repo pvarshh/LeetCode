@@ -11,6 +11,7 @@ https://leetcode.com/u/parney04/
 - [X] [0028. Find the Index of the First Occurrence in a String](https://github.com/pvarshh/LeetCode/blob/main/CodePath/Unit%201%20-%20Strings%20%2B%20Arrays/028%20-%20Find%20Index%20of%20First%20Occurrence%20in%20String.md)
 - [X] [0125. Valid Palindrome](https://github.com/pvarshh/LeetCode/blob/main/NeetCode/Two%20Pointers/125%20-%20Valid%20Palindrome.md)
 - [X] [0242. Valid Anagram](https://github.com/pvarshh/LeetCode/blob/main/NeetCode/Arrays%20%2B%20Hashing/242%20-%20Valid%20Anagrams.md)
+- [X] [2469. Convert the Temperature](https://github.com/pvarshh/LeetCode/blob/main/LeetCode/2469%20-%20Convert%20the%20Temperature.md)
 - [X] [2769. Find the Maximum Achievable Number](https://github.com/pvarshh/LeetCode/blob/main/LeetCode/2769%20-%20Find%20the%20Maximum%20Achievable%20Number.md)
 - [X] [3110. Score of a String](https://github.com/pvarshh/LeetCode/blob/main/LeetCode/3110%20-%20Score%20of%20String.md)
 ### Medium
